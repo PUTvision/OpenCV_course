@@ -1,0 +1,52 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.31101.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "OpenVideo", "OpenVideo\OpenVideo.vcxproj", "{08B18DB5-1002-43D8-83B8-DB876FCC4931}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "HelloOpenCV_3_0", "HelloOpenCV_3_0\HelloOpenCV_3_0.vcxproj", "{35F541EF-97E7-4C3C-9F63-0BE19E9EEA04}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "lab06_cameraCalibration", "lab06_cameraCalibration\lab06_cameraCalibration.vcxproj", "{3A01D766-D0DE-48B5-B511-851DEB7CBBF7}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "lab02_03_04_pixelOperationsAndFiltering", "lab02_03_04_pixelOperationsAndFiltering\lab02_03_04_pixelOperationsAndFiltering.vcxproj", "{4E9ED0D6-FC9A-494D-845A-41D4710F03B3}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Scratchpad", "Scratchpad\Scratchpad.vcxproj", "{5A7DF7C5-0DD6-4C98-AFB5-90867206CE0C}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "HelloOpenCV_2_4_8", "HelloOpenCV_2_4_8\HelloOpenCV_2_4_8.vcxproj", "{2587D061-67CC-45C7-A204-129E34AFE565}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Win32 = Debug|Win32
+		Release|Win32 = Release|Win32
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{08B18DB5-1002-43D8-83B8-DB876FCC4931}.Debug|Win32.ActiveCfg = Debug|Win32
+		{08B18DB5-1002-43D8-83B8-DB876FCC4931}.Debug|Win32.Build.0 = Debug|Win32
+		{08B18DB5-1002-43D8-83B8-DB876FCC4931}.Release|Win32.ActiveCfg = Release|Win32
+		{08B18DB5-1002-43D8-83B8-DB876FCC4931}.Release|Win32.Build.0 = Release|Win32
+		{35F541EF-97E7-4C3C-9F63-0BE19E9EEA04}.Debug|Win32.ActiveCfg = Debug|Win32
+		{35F541EF-97E7-4C3C-9F63-0BE19E9EEA04}.Debug|Win32.Build.0 = Debug|Win32
+		{35F541EF-97E7-4C3C-9F63-0BE19E9EEA04}.Release|Win32.ActiveCfg = Release|Win32
+		{35F541EF-97E7-4C3C-9F63-0BE19E9EEA04}.Release|Win32.Build.0 = Release|Win32
+		{3A01D766-D0DE-48B5-B511-851DEB7CBBF7}.Debug|Win32.ActiveCfg = Debug|Win32
+		{3A01D766-D0DE-48B5-B511-851DEB7CBBF7}.Debug|Win32.Build.0 = Debug|Win32
+		{3A01D766-D0DE-48B5-B511-851DEB7CBBF7}.Release|Win32.ActiveCfg = Release|Win32
+		{3A01D766-D0DE-48B5-B511-851DEB7CBBF7}.Release|Win32.Build.0 = Release|Win32
+		{4E9ED0D6-FC9A-494D-845A-41D4710F03B3}.Debug|Win32.ActiveCfg = Debug|Win32
+		{4E9ED0D6-FC9A-494D-845A-41D4710F03B3}.Debug|Win32.Build.0 = Debug|Win32
+		{4E9ED0D6-FC9A-494D-845A-41D4710F03B3}.Release|Win32.ActiveCfg = Release|Win32
+		{4E9ED0D6-FC9A-494D-845A-41D4710F03B3}.Release|Win32.Build.0 = Release|Win32
+		{5A7DF7C5-0DD6-4C98-AFB5-90867206CE0C}.Debug|Win32.ActiveCfg = Debug|Win32
+		{5A7DF7C5-0DD6-4C98-AFB5-90867206CE0C}.Debug|Win32.Build.0 = Debug|Win32
+		{5A7DF7C5-0DD6-4C98-AFB5-90867206CE0C}.Release|Win32.ActiveCfg = Release|Win32
+		{5A7DF7C5-0DD6-4C98-AFB5-90867206CE0C}.Release|Win32.Build.0 = Release|Win32
+		{2587D061-67CC-45C7-A204-129E34AFE565}.Debug|Win32.ActiveCfg = Debug|Win32
+		{2587D061-67CC-45C7-A204-129E34AFE565}.Debug|Win32.Build.0 = Debug|Win32
+		{2587D061-67CC-45C7-A204-129E34AFE565}.Release|Win32.ActiveCfg = Release|Win32
+		{2587D061-67CC-45C7-A204-129E34AFE565}.Release|Win32.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
