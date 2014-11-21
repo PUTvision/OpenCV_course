@@ -18,5 +18,13 @@
     <ClCompile Include="Scratchpad.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="blur.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="blur.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

@@ -7,12 +7,12 @@ using namespace cv;
 class MF_StopWatch
 {
 	private:
-		int startTime;
+		double startTime;
 
 	public:
 		MF_StopWatch(void)
 		{
-			this->startTime = 0;
+			this->startTime = 0.0;
 		}
 	
 		void Start(void)
@@ -28,6 +28,58 @@ class MF_StopWatch
 			return (elapsedTime * 1000);
 		}
 };
+
+void NegativeDirectMemoryAccessTuned4Bytes(Mat& img)
+{
+	int numberOfElemnts = img.rows * img.cols / sizeof(int64);
+	int64* p = (int64*)img.data;
+	for (int j = 0; j < numberOfElemnts; ++j)
+	{
+		p[j] = ~p[j];
+	}
+}
+
+void NegativeDirectMemoryAccessTunedEvenMore(Mat& img)
+{
+	/*
+	int numberOfElemnts = img.rows * img.cols / sizeof(int);
+	int* p = (int*)img.data;
+	for (int j = 0; j < numberOfElemnts; j+=8)
+	{
+	p[j] = ~p[j];
+	p[j+1] = ~p[j+1];
+	p[j+2] = ~p[j+2];
+	p[j+3] = ~p[j+3];
+	p[j+4] = ~p[j+4];
+	p[j+5] = ~p[j+5];
+	p[j+6] = ~p[j+6];
+	p[j+7] = ~p[j+7];
+	}
+	*/
+
+
+	int step1 = img.rows * img.cols;
+	uchar* src1 = img.data;
+	uchar* dst1 = img.data;
+
+
+	int i = 0;
+	for (; i < step1; i += 16)
+	{
+		const int* src1i = (const int*)(src1 + i);
+		int* dst1i = (int*)(dst1 + i);
+		int t0 = ~(src1i)[0];
+		int t1 = ~(src1i)[1];
+		int t2 = ~(src1i)[2];
+		int t3 = ~(src1i)[3];
+
+		dst1i[0] = t0;
+		dst1i[1] = t1;
+		dst1i[2] = t2;
+		dst1i[3] = t3;
+	}
+
+}
 
 void NegativeDirectMemoryAccessUniversal(Mat& img)
 {
@@ -147,6 +199,19 @@ void NegativeLambdaRGB(Mat& img)
 	});
 }
 
+void NegativeRowColAccess(Mat& img)
+{
+	int rows = img.rows;
+	int cols = img.cols;
+
+	for (int i = 0; i < rows; ++i)
+	{
+		for (int j = 0; j < cols; ++j)
+		{
+			img.row(i).col(j) = ~img.row(i).col(j);
+		}
+	}
+}
 
 void NegativeDirectMemoryAccessGrayscale(Mat& img)
 {
@@ -217,6 +282,81 @@ void NegativeLambdaGrayscale(Mat& img)
 		p = 255 - p;
 	});
 }
+
+/*
+static inline void NegativeTest(void)
+{
+Mat src = imread("opalenizna programisty.jpg", IMREAD_GRAYSCALE);
+Mat dst = src.clone();
+const int numberOfPrepareIterations = 100;
+const int numberOfIterations = 1000;
+
+MF_StopWatch sw;
+
+sw.Start();
+for (int i = 0; i<numberOfIterations; i++)
+{
+NegativeDirectMemoryAccess(dst.clone());
+}
+std::cout << std::endl << "DirectMemoryAccess: " << sw.GetElapsedTimeInMiliseconds() << std::endl;
+
+sw.Start();
+for (int i = 0; i<numberOfIterations; i++)
+{
+NegativeDirectMemoryAccessTuned(dst.clone());
+}
+std::cout << std::endl << "DirectMemoryAccessTuned: " << sw.GetElapsedTimeInMiliseconds() << std::endl;
+
+sw.Start();
+for (int i = 0; i<numberOfIterations; i++)
+{
+NegativeDirectMemoryAccessTuned4Bytes(dst.clone());
+}
+std::cout << std::endl << "DirectMemoryAccessTuned4Bytes: " << sw.GetElapsedTimeInMiliseconds() << std::endl;
+
+sw.Start();
+for (int i = 0; i<numberOfIterations; i++)
+{
+NegativeDirectMemoryAccessTunedEvenMore(dst.clone());
+}
+std::cout << std::endl << "NegativeDirectMemoryAccessTunedEvenMore: " << sw.GetElapsedTimeInMiliseconds() << std::endl;
+
+sw.Start();
+for (int i = 0; i<numberOfIterations; i++)
+{
+NegativeIterator(dst.clone());
+}
+std::cout << std::endl << "Iterator: " << sw.GetElapsedTimeInMiliseconds() << std::endl;
+
+sw.Start();
+for (int i = 0; i<numberOfIterations; i++)
+{
+NegativeRandomAccess(dst.clone());
+}
+std::cout << std::endl << "RandomAccess: " << sw.GetElapsedTimeInMiliseconds() << std::endl;
+
+sw.Start();
+for (int i = 0; i<numberOfIterations / 100; i++)
+{
+NegativeRowsColsAccess(dst.clone());
+}
+std::cout << std::endl << "RowsColsAccess: " << sw.GetElapsedTimeInMiliseconds() * 100 << std::endl;
+
+sw.Start();
+for (int i = 0; i<numberOfIterations; i++)
+{
+dst = ~dst;
+}
+std::cout << std::endl << "Built-in negative: " << sw.GetElapsedTimeInMiliseconds() << std::endl;
+
+namedWindow("Original", 1);
+namedWindow("Negative", 1);
+imshow("Original", src);
+imshow("Negative", dst);
+
+waitKey(0);
+}
+*/
 
 int main(void)
 {
