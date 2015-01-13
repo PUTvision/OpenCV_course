@@ -1,0 +1,95 @@
+#include <opencv2/opencv.hpp>
+
+using namespace cv;
+
+#include <vector>
+
+int main(void)
+{
+	// does not work with my compilation of opencv
+	//SurfFeatureDetector myFeatureDetector = new SurfFeatureDetector(100);
+
+	std::vector<cv::String> listOfParameters;
+
+	const char* windowName_img1WithKeypoints = "img1Keypoints";
+	const char* windowName_img2WithKeypoints = "img2Keypoints";
+	const char* windowName_imgMatches = "imgMatches";
+
+	namedWindow(windowName_img1WithKeypoints);
+	namedWindow(windowName_img2WithKeypoints);
+	namedWindow(windowName_imgMatches);
+
+	Mat imgScene1 = imread("resources\\forward-1.bmp", IMREAD_COLOR);
+	Mat imgScene2 = imread("resources\\forward-2.bmp", IMREAD_COLOR);
+
+	std::vector<KeyPoint> keypointsFromImage1;
+	std::vector<KeyPoint> keypointsFromImage2;
+
+	Ptr<FeatureDetector> det = FeatureDetector::create("FAST");
+	det->getParams(listOfParameters);
+	std::cout << "Detector available params: " << std::endl;
+	for (auto param : listOfParameters)
+	{
+		std::cout << param << std::endl;
+	}
+
+	std::cout << "Threshold before change: " << det->get<int>("threshold") << std::endl;
+	det->set("threshold", 100);
+	std::cout << "Threshold after change: " << det->get<int>("threshold") << std::endl;
+
+	det->detect(imgScene1, keypointsFromImage1);
+	det->detect(imgScene2, keypointsFromImage2);
+
+	Mat imgScene1WithKeypoints;
+	Mat imgScene2WithKeypoints;
+	drawKeypoints(imgScene1, keypointsFromImage1, imgScene1WithKeypoints);
+	drawKeypoints(imgScene2, keypointsFromImage2, imgScene2WithKeypoints);
+
+	imshow(windowName_img1WithKeypoints, imgScene1WithKeypoints);
+	imshow(windowName_img2WithKeypoints, imgScene2WithKeypoints);
+
+	Ptr<DescriptorExtractor> desc = DescriptorExtractor::create("ORB");
+	desc->getParams(listOfParameters);
+	std::cout << "Descriptor available params: " << std::endl;
+	for (auto param : listOfParameters)
+	{
+		std::cout << param << std::endl;
+	}
+
+	Mat descriptorsFromImage1;
+	Mat descriptorsFromImage2;
+	desc->compute(imgScene1, keypointsFromImage1, descriptorsFromImage1);
+	desc->compute(imgScene2, keypointsFromImage2, descriptorsFromImage2);
+
+	Ptr<DescriptorMatcher> match = DescriptorMatcher::create("BruteForce");
+	std::cout << "Matcher available params: " << std::endl;
+	for (auto param : listOfParameters)
+	{
+		std::cout << param << std::endl;
+	}
+
+	/*
+	// norm types
+	enum {
+	NORM_INF = 1,
+	NORM_L1 = 2,
+	NORM_L2 = 4,
+	NORM_L2SQR = 5,
+	NORM_HAMMING = 6,
+	NORM_HAMMING2 = 7,
+	NORM_TYPE_MASK = 7,
+	NORM_RELATIVE = 8,
+	NORM_MINMAX = 32
+	};
+	*/
+	std::vector<DMatch> matches;
+	match->match(descriptorsFromImage1, descriptorsFromImage2, matches);
+	Mat imageWithMatches;
+	drawMatches(imgScene1, keypointsFromImage1, imgScene2, keypointsFromImage2, matches, imageWithMatches);
+
+	imshow(windowName_imgMatches, imageWithMatches);
+
+	waitKey(0);
+
+	return 0;
+}

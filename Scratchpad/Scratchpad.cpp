@@ -1146,27 +1146,6 @@ int testCountOnes()
 	return retval;
 }
 
-void Detectors(void)
-{
-	FeatureDetector * myFeatureDetector = FeatureDetector::create("FAST");
-	//myFeatureDetector->create("FAST");
-
-	myFeatureDetector = new SurfFeatureDetector(100);
-
-	Ptr<DescriptorMatcher> myDescriptorMatcher = DescriptorMatcher::create("BruteForce");
-	//myDescriptorMatcher->match(
-
-	//myFeatureDetector->detect(
-
-	vector<KeyPoint> features;
-	KeyPoint point(5.0F, 5.0F, 1.0F);
-	features.push_back(point);
-
-	std::cout << features[0].pt;
-
-
-}
-
 struct SZespolone
 {
 	int re;
