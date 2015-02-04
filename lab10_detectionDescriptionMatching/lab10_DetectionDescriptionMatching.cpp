@@ -19,8 +19,8 @@ int main(void)
 	namedWindow(windowName_img2WithKeypoints);
 	namedWindow(windowName_imgMatches);
 
-	Mat imgScene1 = imread("resources\\forward-1.bmp", IMREAD_COLOR);
-	Mat imgScene2 = imread("resources\\forward-2.bmp", IMREAD_COLOR);
+	Mat imgScene1 = imread("resources/forward-1.bmp", IMREAD_COLOR);
+	Mat imgScene2 = imread("resources/forward-2.bmp", IMREAD_COLOR);
 
 	std::vector<KeyPoint> keypointsFromImage1;
 	std::vector<KeyPoint> keypointsFromImage2;
@@ -34,7 +34,7 @@ int main(void)
 	}
 
 	std::cout << "Threshold before change: " << det->get<int>("threshold") << std::endl;
-	det->set("threshold", 100);
+	det->set("threshold", 60);
 	std::cout << "Threshold after change: " << det->get<int>("threshold") << std::endl;
 
 	det->detect(imgScene1, keypointsFromImage1);
@@ -62,11 +62,15 @@ int main(void)
 	desc->compute(imgScene2, keypointsFromImage2, descriptorsFromImage2);
 
 	Ptr<DescriptorMatcher> match = DescriptorMatcher::create("BruteForce");
+	match->getParams(listOfParameters);
 	std::cout << "Matcher available params: " << std::endl;
 	for (auto param : listOfParameters)
 	{
 		std::cout << param << std::endl;
 	}
+	std::cout << "normType before change: " << match->get<int>("normType") << std::endl;
+	match->set("normType", NORM_HAMMING);
+	std::cout << "normType after change: " << match->get<int>("normType") << std::endl;
 
 	/*
 	// norm types
