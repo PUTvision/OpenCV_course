@@ -21,6 +21,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "StructuralAnalysisContourDe
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "lab10_detectionDescriptionMatching", "lab10_detectionDescriptionMatching\lab10_detectionDescriptionMatching.vcxproj", "{F5E4D5F7-6BB4-4C80-95F1-E76B569FD20C}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "lbp_tests", "lbp_tests\lbp_tests.vcxproj", "{62E9B970-E622-4CB6-B5A3-5876DAC6441C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Win32 = Debug|Win32
@@ -63,6 +65,10 @@ Global
 		{F5E4D5F7-6BB4-4C80-95F1-E76B569FD20C}.Debug|Win32.Build.0 = Debug|Win32
 		{F5E4D5F7-6BB4-4C80-95F1-E76B569FD20C}.Release|Win32.ActiveCfg = Release|Win32
 		{F5E4D5F7-6BB4-4C80-95F1-E76B569FD20C}.Release|Win32.Build.0 = Release|Win32
+		{62E9B970-E622-4CB6-B5A3-5876DAC6441C}.Debug|Win32.ActiveCfg = Debug|Win32
+		{62E9B970-E622-4CB6-B5A3-5876DAC6441C}.Debug|Win32.Build.0 = Debug|Win32
+		{62E9B970-E622-4CB6-B5A3-5876DAC6441C}.Release|Win32.ActiveCfg = Release|Win32
+		{62E9B970-E622-4CB6-B5A3-5876DAC6441C}.Release|Win32.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
