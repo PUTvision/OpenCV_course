@@ -5,11 +5,11 @@
   <PropertyGroup />
   <ItemDefinitionGroup>
     <ClCompile>
-      <AdditionalIncludeDirectories>$(OPENCV_DIR)\..\..\include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(OPENCV_DIR_3_0)\..\..\include</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
-      <AdditionalLibraryDirectories>%OPENCV_DIR%/bin</AdditionalLibraryDirectories>
-      <AdditionalDependencies>opencv_core300d.lib;opencv_imgproc300d.lib;opencv_highgui300d.lib;opencv_ml300d.lib;opencv_video300d.lib;opencv_features2d300d.lib;opencv_calib3d300d.lib;opencv_objdetect300d.lib;opencv_contrib300d.lib;opencv_legacy300d.lib;opencv_flann300d.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(OPENCV_DIR_3_0)/lib</AdditionalLibraryDirectories>
+      <AdditionalDependencies>opencv_core300.lib;opencv_imgproc300.lib;opencv_highgui300.lib;opencv_ml300.lib;opencv_video300.lib;opencv_videoio300.lib;opencv_features2d300.lib;opencv_calib3d300.lib;opencv_objdetect300.lib;opencv_flann300.lib;opencv_imgcodecs300.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup />
