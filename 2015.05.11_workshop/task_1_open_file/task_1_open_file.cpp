@@ -21,7 +21,9 @@ int main(int, char)
 	namedWindow("Image from file", WINDOW_AUTOSIZE);
 	imshow("Image from file", imageFromFile);
 
-	waitKey(0); // Wait for a keystroke in the window
+	// ustaw breakpoint na poni¿szej linii (F9 lub menu DEBUG->Toogle Breakpoint)
+	waitKey(0);
+	// gdy program siê zatrzyma uruchomiæ okno Image Watch (menu VIEW->Other windows->Image Watch)
 
 	return 0;
 }
