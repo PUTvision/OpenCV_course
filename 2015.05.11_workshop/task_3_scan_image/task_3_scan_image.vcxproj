@@ -11,11 +11,11 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="task_2_pixel_manipulation.cpp" />
+    <ClCompile Include="task_3_scan_image.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{BF191012-3493-4169-B601-9E38546FCA7B}</ProjectGuid>
-    <RootNamespace>task_2_pixel_manipulation</RootNamespace>
+    <ProjectGuid>{B9471629-D4FB-4BA2-B363-4EE713880E46}</ProjectGuid>
+    <RootNamespace>task_3_scan_image</RootNamespace>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">

@@ -15,7 +15,7 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="task_2_pixel_manipulation.cpp">
+    <ClCompile Include="task_3_scan_image.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
