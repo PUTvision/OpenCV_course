@@ -37,8 +37,8 @@ int main(int, char)
 
 	decodeImage(imageFromFile);
 
-	namedWindow("Image from file", WINDOW_AUTOSIZE);
-	imshow("Image from file", imageFromFile);
+	namedWindow("Decoded image", WINDOW_AUTOSIZE);
+	imshow("Decoded image", imageFromFile);
 
 	waitKey(0);
 

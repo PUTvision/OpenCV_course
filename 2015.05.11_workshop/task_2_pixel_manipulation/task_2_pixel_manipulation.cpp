@@ -35,8 +35,8 @@ int main(int, char)
 	drawRectangle(imageFromFile, 650, 490, widthSize, heightSize);
 	drawRectangle(imageFromFile, 700, 530, widthSize, heightSize);
 
-	namedWindow("Image from file", WINDOW_AUTOSIZE);
-	imshow("Image from file", imageFromFile);
+	namedWindow("Modified image", WINDOW_AUTOSIZE);
+	imshow("Modified image", imageFromFile);
 
 	waitKey(0);
 

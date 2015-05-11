@@ -24,51 +24,51 @@ int main(int, char)
 	Mat imageEroded;
 	erode(imageThresholded, imageEroded, Mat());
 
-	Mat structingElement = getStructuringElement(MORPH_RECT, Size(7, 7), Point(3, 3));
+	const int structingElementSize = 3;
+	Mat structingElement = getStructuringElement(
+		MORPH_RECT,
+		Size(2 * structingElementSize + 1, 2 * structingElementSize + 1),
+		Point(structingElementSize, structingElementSize)
+	);
 
 	Mat imageDilated;
 	dilate(imageEroded, imageDilated, structingElement);
 
-	// http://docs.opencv.org/doc/tutorials/imgproc/shapedescriptors/find_contours/find_contours.html#find-contours
 	std::vector<std::vector<Point>> contours;
 	std::vector<Vec4i> hierarchy;
 
 	Mat imgForContoursProcessing = imageDilated.clone();
 	findContours(imgForContoursProcessing, contours, hierarchy, RETR_TREE, CHAIN_APPROX_SIMPLE);
 
-	/// Get the moments
-	std::vector<Moments> mu(contours.size());
-	for (int i = 0; i < contours.size(); i++)
-	{
-		mu[i] = moments(contours[i], false);
-	}
+	// BGR
+	Scalar color_5zl(255, 0, 0);
+	Scalar color_1gr(0, 0, 255);
+	int numberOf5zl = 0;
+	int numberOf1gr = 0;
 
-	///  Get the mass centers:
-	std::vector<Point2f> mc(contours.size());
-	for (int i = 0; i < contours.size(); i++)
-	{
-		mc[i] = Point2f((float)(mu[i].m10 / mu[i].m00), (float)(mu[i].m01 / mu[i].m00));
-	}
-
-	RNG rng(12345);
-
-	/// Calculate the area with the moments 00 and compare with the result of the OpenCV function
-	printf("\t Info: Area and Contour Length \n");
 	Mat imgWithContours = Mat::zeros(imgForContoursProcessing.size(), CV_8UC3);
 	for (int i = 0; i<contours.size(); ++i)
 	{
-		// BGR
-		Scalar randomColor(rng.uniform(0, 255), rng.uniform(0, 255), rng.uniform(0, 255));
-
-		printf(" * Contour[%d] - Area (M_00) = %.2f - Area OpenCV: %.2f - Length: %.2f \n", i, mu[i].m00, contourArea(contours[i]), arcLength(contours[i], true));
-		drawContours(imgWithContours, contours, i, randomColor, 1, 8, hierarchy);
-		circle(imgWithContours, mc[i], 4, randomColor, FILLED);
+		double contourSize = contourArea(contours[i]);
+		if (contourSize > 7000)
+		{
+			drawContours(imgWithContours, contours, i, color_5zl, 1, 8, hierarchy);
+			numberOf5zl++;
+		}
+		else if (contourSize > 3000)
+		{
+			drawContours(imgWithContours, contours, i, color_1gr, 1, 8, hierarchy);
+			numberOf1gr++;
+		}
 	}
 
-	namedWindow("Image from file", WINDOW_AUTOSIZE);
-	imshow("Image from file", imgWithContours);
-	`
-		waitKey(0);
+	std::cout << "Number of 5zl coins: " << numberOf5zl << std::endl;
+	std::cout << "Number of 1gr coins: " << numberOf1gr << std::endl;
+
+	namedWindow("Image with appropriate contours", WINDOW_AUTOSIZE);
+	imshow("Image with appropriate contours", imgWithContours);
+	
+	waitKey(0);
 
 	return 0;
 }

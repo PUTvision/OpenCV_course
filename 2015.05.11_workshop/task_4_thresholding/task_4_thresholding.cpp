@@ -24,13 +24,18 @@ int main(int, char)
 	Mat imageEroded;
 	erode(imageThresholded, imageEroded, Mat());
 
-	Mat structingElement = getStructuringElement(MORPH_RECT, Size(7, 7), Point(3, 3));
+	const int structingElementSize = 3;
+	Mat structingElement = getStructuringElement(
+		MORPH_RECT,
+		Size(2*structingElementSize+1, 2*structingElementSize+1),
+		Point(structingElementSize, structingElementSize)
+	);
 
 	Mat imageDilated;
 	dilate(imageEroded, imageDilated, structingElement);
 
-	namedWindow("Image from file", WINDOW_AUTOSIZE);
-	imshow("Image from file", imageDilated);
+	namedWindow("Image after processing", WINDOW_AUTOSIZE);
+	imshow("Image after processing", imageDilated);
 
 	waitKey(0);
 
