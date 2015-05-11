@@ -27,7 +27,7 @@ int main(int, char)
 {
 	Mat imageFromFile;
 
-	imageFromFile = imread("..\\data\\zaliczenie_napis.png", CV_LOAD_IMAGE_GRAYSCALE);
+	imageFromFile = imread("..\\data\\dog_wizard.png", CV_LOAD_IMAGE_GRAYSCALE);
 
 	if (!imageFromFile.data)
 	{

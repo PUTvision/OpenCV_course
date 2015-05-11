@@ -37,6 +37,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "task_5_contour_detection", 
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "task_6_structural_analysis", "2015.05.11_workshop\task_6_structural_analysis\task_6_structural_analysis.vcxproj", "{745BBC3A-941C-48B4-B476-94B6C7E32B2E}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "utility_encode_image", "2015.05.11_workshop\utility_encode_image\utility_encode_image.vcxproj", "{87901042-C740-4A98-9E96-BC5BA6A01845}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Mixed Platforms = Debug|Mixed Platforms
@@ -207,6 +209,16 @@ Global
 		{745BBC3A-941C-48B4-B476-94B6C7E32B2E}.Release|Win32.ActiveCfg = Release|x64
 		{745BBC3A-941C-48B4-B476-94B6C7E32B2E}.Release|x64.ActiveCfg = Release|x64
 		{745BBC3A-941C-48B4-B476-94B6C7E32B2E}.Release|x64.Build.0 = Release|x64
+		{87901042-C740-4A98-9E96-BC5BA6A01845}.Debug|Mixed Platforms.ActiveCfg = Debug|x64
+		{87901042-C740-4A98-9E96-BC5BA6A01845}.Debug|Mixed Platforms.Build.0 = Debug|x64
+		{87901042-C740-4A98-9E96-BC5BA6A01845}.Debug|Win32.ActiveCfg = Debug|x64
+		{87901042-C740-4A98-9E96-BC5BA6A01845}.Debug|x64.ActiveCfg = Debug|x64
+		{87901042-C740-4A98-9E96-BC5BA6A01845}.Debug|x64.Build.0 = Debug|x64
+		{87901042-C740-4A98-9E96-BC5BA6A01845}.Release|Mixed Platforms.ActiveCfg = Release|x64
+		{87901042-C740-4A98-9E96-BC5BA6A01845}.Release|Mixed Platforms.Build.0 = Release|x64
+		{87901042-C740-4A98-9E96-BC5BA6A01845}.Release|Win32.ActiveCfg = Release|x64
+		{87901042-C740-4A98-9E96-BC5BA6A01845}.Release|x64.ActiveCfg = Release|x64
+		{87901042-C740-4A98-9E96-BC5BA6A01845}.Release|x64.Build.0 = Release|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -218,5 +230,6 @@ Global
 		{8816109D-8A30-4DCA-8ACF-96657073A568} = {DB180190-F77F-42D3-B53D-A353674F6A93}
 		{3B30E429-45AA-4590-A3C6-DF50D4B7C7F3} = {DB180190-F77F-42D3-B53D-A353674F6A93}
 		{745BBC3A-941C-48B4-B476-94B6C7E32B2E} = {DB180190-F77F-42D3-B53D-A353674F6A93}
+		{87901042-C740-4A98-9E96-BC5BA6A01845} = {DB180190-F77F-42D3-B53D-A353674F6A93}
 	EndGlobalSection
 EndGlobal

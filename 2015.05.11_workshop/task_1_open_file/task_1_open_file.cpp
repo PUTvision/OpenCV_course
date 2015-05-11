@@ -10,7 +10,7 @@ int main(int, char)
 
 	// najechanie kursorem na funkcjê wyœwietla pe³en opis wraz z opisem argumentów
 	// ctrl + shift + space naciœniête pomiêdzy nawiasami () podpowiada nazwy argumentów
-	imageFromFile = imread("..\\data\\zaliczenie_napis.png", CV_LOAD_IMAGE_GRAYSCALE);
+	imageFromFile = imread("..\\data\\dog_wizard.png", CV_LOAD_IMAGE_GRAYSCALE);
 
 	if (!imageFromFile.data)
 	{
