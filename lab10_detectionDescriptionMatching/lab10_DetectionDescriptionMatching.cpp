@@ -19,8 +19,19 @@ int main(void)
 	namedWindow(windowName_img2WithKeypoints);
 	namedWindow(windowName_imgMatches);
 
-	Mat imgScene1 = imread("resources/forward-1.bmp", IMREAD_COLOR);
-	Mat imgScene2 = imread("resources/forward-2.bmp", IMREAD_COLOR);
+	Mat imgScene1;
+	Mat imgScene2;
+
+	imgScene1 = imread("resources/forward-1.bmp", IMREAD_COLOR);
+	imgScene2 = imread("resources/forward-2.bmp", IMREAD_COLOR);
+
+	const double scale = 0.5;
+
+	//resize(imread("resources/Basler_acA1600-60gc__21433617__20150216_155054805_0128.png", IMREAD_COLOR), imgScene1, cv::Size(), 0.5, 0.5);
+	//resize(imread("resources/Basler_acA1600-60gc__21433617__20141019_175350098_0387.jpg", IMREAD_COLOR), imgScene1, cv::Size(), scale, scale);
+
+	//resize(imread("resources/Basler_acA1600-60gc__21433617__20150216_155054805_0136.png", IMREAD_COLOR), imgScene2, cv::Size(), 0.5, 0.5);
+	//resize(imread("resources/Basler_acA1600-60gc__21433617__20141019_175350098_0397.jpg", IMREAD_COLOR), imgScene2, cv::Size(), scale, scale);
 
 	std::vector<KeyPoint> keypointsFromImage1;
 	std::vector<KeyPoint> keypointsFromImage2;
@@ -34,7 +45,7 @@ int main(void)
 	}
 
 	std::cout << "Threshold before change: " << det->get<int>("threshold") << std::endl;
-	det->set("threshold", 60);
+	det->set("threshold", 90);
 	std::cout << "Threshold after change: " << det->get<int>("threshold") << std::endl;
 
 	det->detect(imgScene1, keypointsFromImage1);
@@ -88,6 +99,20 @@ int main(void)
 	*/
 	std::vector<DMatch> matches;
 	match->match(descriptorsFromImage1, descriptorsFromImage2, matches);
+
+	for (auto itr = matches.begin(); itr != matches.end();)
+	{
+		if ((*itr).distance < 10.0)
+		{
+			//itr = matches.erase(itr);
+			itr++;
+		}
+		else
+		{
+			itr++;
+		}
+	}
+
 	Mat imageWithMatches;
 	drawMatches(imgScene1, keypointsFromImage1, imgScene2, keypointsFromImage2, matches, imageWithMatches);
 
