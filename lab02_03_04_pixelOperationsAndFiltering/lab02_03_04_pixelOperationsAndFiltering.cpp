@@ -358,8 +358,131 @@ waitKey(0);
 }
 */
 
+#include <algorithm>    // std::sort
+
+void Filter2(const Mat& imgIn, Mat& imgOut)
+{
+	Mat kernel;
+	kernel.create(5, 5, CV_8UC1);
+
+	kernel.setTo(Scalar(0));
+	for (int i = 0; i < 5; ++i)
+	{
+		kernel.at<uchar>(0, i) = 1;
+		kernel.at<uchar>(4, i) = 1;
+	}
+	kernel.at<uchar>(2, 2) = 1;
+
+
+	std::cout << "kernel:" << std::endl << kernel << std::endl;
+
+	Mat imgEroded, imgDilated;
+	erode(imgIn, imgEroded, kernel);
+	dilate(imgIn, imgDilated, kernel);
+
+	for (int i = 0; i < imgIn.rows; ++i)
+	{
+		for (int j = 0; j < imgIn.cols; j++)
+		{
+			if (imgIn.at<char>(i, j) >= 150)
+			{
+				imgOut.at<char>(i, j) = imgDilated.at<char>(i, j);
+			}
+			else
+			{
+				imgOut.at<char>(i, j) = imgEroded.at<char>(i, j);
+			}
+		}
+	}
+}
+
+void Filter(const Mat& imgIn, Mat& imgOut)
+{
+	for (int i = 0; i < imgIn.rows; ++i)
+	{
+		for (int j = 0; j < imgIn.cols; j++)
+		{
+			std::vector<char> values;
+
+			if (j > 2)
+			{
+
+			}
+
+			if (j > 1)
+			{
+				values.push_back(imgIn.at<char>(i, j - 2));
+			}
+			if (j > 0)
+			{
+				values.push_back(imgIn.at<char>(i, j - 1));
+			}
+			if (j < (imgIn.cols - 2))
+			{
+				values.push_back(imgIn.at<char>(i, j + 2));
+			}
+			if (j < (imgIn.cols - 1))
+			{
+				values.push_back(imgIn.at<char>(i, j + 1));
+			}
+			if (i > 1)
+			{
+				values.push_back(imgIn.at<char>(i - 2, j));
+			}
+			if (i > 0)
+			{
+				values.push_back(imgIn.at<char>(i - 1, j));
+			}
+			if (i < (imgIn.rows - 2))
+			{
+				values.push_back(imgIn.at<char>(i + 2, j));
+			}
+			if (i < (imgIn.rows - 1))
+			{
+				values.push_back(imgIn.at<char>(i + 1, j));
+			}
+			values.push_back(imgIn.at<char>(i, j));
+
+			//std::sort(values.begin(), values.end());
+
+			if (imgIn.at<char>(i, j) >= 120)
+			{
+				imgOut.at<char>(i, j) = *std::max_element(values.begin(), values.end());
+			}
+			else
+			{
+				imgOut.at<char>(i, j) = *std::min_element(values.begin(), values.end());
+			}
+		}
+	}
+}
+
 int main(void)
 {
+
+	Mat imageFromFile;
+
+	// najechanie kursorem na funkcjê wyœwietla pe³en opis wraz z opisem argumentów
+	// ctrl + shift + space naciœniête pomiêdzy nawiasami () podpowiada nazwy argumentów
+	imageFromFile = imread("..\\data\\lena_noise.bmp", IMREAD_GRAYSCALE);
+	Mat result = imread("..\\data\\lena_noise.bmp", IMREAD_GRAYSCALE);
+
+	if (!imageFromFile.data)
+	{
+		std::cout << "Could not open or find the image" << std::endl;
+		return -1;
+	}
+
+	Filter2(imageFromFile, result);
+	//Filter(imageFromFile, result);
+
+	namedWindow("Image from file", WINDOW_AUTOSIZE);
+	imshow("Image from file", result);
+
+	
+
+	waitKey(0);
+
 	VideoCapture cap(0);	// open the default camera
 	if (!cap.isOpened())	// check if we succeeded
 	{
