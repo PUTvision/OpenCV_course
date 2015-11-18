@@ -1,5 +1,7 @@
 #include "opencv2/opencv.hpp"
 
+// Using CeempleCVand OpenCV 3.X
+
 using namespace cv;
 
 void Prewitt_mask(void)
@@ -36,7 +38,6 @@ void Prewitt_mask(void)
 		Mat img_prewitt;
 		sqrt(img_horizontal + img_vertical, img_prewitt);
 		img_prewitt.convertTo(img_prewitt, CV_8U);
-
 
 		namedWindow("Prewitt mask", WINDOW_AUTOSIZE);
 		imshow("Prewitt mask", img_prewitt);
@@ -75,7 +76,6 @@ void Sobel_mask(void)
 		Mat img_sobel;
 		sqrt(img_horizontal + img_vertical, img_sobel);
 		img_sobel.convertTo(img_sobel, CV_8U);
-
 
 		namedWindow("Sobel mask", WINDOW_AUTOSIZE);
 		imshow("Sobel mask", img_sobel);
