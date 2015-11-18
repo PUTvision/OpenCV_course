@@ -459,7 +459,6 @@ void Filter(const Mat& imgIn, Mat& imgOut)
 
 int main(void)
 {
-
 	Mat imageFromFile;
 
 	// najechanie kursorem na funkcjê wyœwietla pe³en opis wraz z opisem argumentów

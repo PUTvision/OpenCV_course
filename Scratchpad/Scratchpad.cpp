@@ -541,63 +541,6 @@ static void FileInputOutputTest(void)
 	ShowValues(intValue, doubleValue, stringValue, A);
 }
 
-void SobelTest(void)
-{
-	Mat imgSrc = imread("opalenizna programisty.jpg", IMREAD_GRAYSCALE);
-	//Mat grey;
-	//cvtColor(img, grey, CV_BGR2GREY);
-
-	Mat imgSobelHorizontal;
-	Mat imgSobelHorizontalInv;
-
-	Mat imgSobelHorizontal_CV8U = imgSrc.clone();
-	Mat imgSobelHorizontalInv_CV8U = imgSrc.clone();
-
-	Mat sobelHorizontal = (Mat_<float>(3, 3) << -1, -2, -1, 0, 0, 0, 1, 2, 1);
-	Mat sobelHorizontalInv = (Mat_<float>(3, 3) << 1, 2, 1, 0, 0, 0, -1, -2, -1);
-	//Mat sobel = (Mat_<float>(3,3) << -1.0/8, -2.0/8, -1.0/8, 0, 0, 0, 1.0/8, 2.0/8, 1.0/8);
-
-
-	filter2D(imgSrc, imgSobelHorizontal, CV_16S, sobelHorizontal);
-	filter2D(imgSrc, imgSobelHorizontalInv, CV_16S, sobelHorizontalInv);
-
-	convertScaleAbs(imgSobelHorizontal, imgSobelHorizontal_CV8U, 1.0);
-	convertScaleAbs(imgSobelHorizontalInv, imgSobelHorizontalInv_CV8U, 1.0);
-
-	//imgSobelHorizontal_CV8U = imgSobelHorizontal.clone();
-	//imgSobelHorizontalInv_CV8U = imgSobelHorizontalInv.clone();
-
-	namedWindow("imgSobelHorizontal", WINDOW_AUTOSIZE);
-	imshow("imgSobelHorizontal", imgSobelHorizontal_CV8U);
-
-	namedWindow("imgSobelHorizontalInv", WINDOW_AUTOSIZE);
-	imshow("imgSobelHorizontalInv", imgSobelHorizontalInv_CV8U);
-
-	std::cout << imgSrc.flags << std::endl;
-	std::cout << imgSobelHorizontal.flags << std::endl;
-
-	waitKey();
-
-	//convertScaleAbs(
-	/*
-	Mat img = imread("image.jpg");
-
-
-	Mat sobelx;
-	Sobel(grey, sobelx, CV_32F, 1, 0);
-
-	double minVal, maxVal;
-	minMaxLoc(sobelx, &minVal, &maxVal); //find minimum and maximum intensities
-	Mat draw;
-	sobelx.convertTo(draw, CV_8U, 255.0/(maxVal - minVal), -minVal);
-
-	namedWindow("image", CV_WINDOW_AUTOSIZE);
-	imshow("image", draw);
-	waitKey();
-	*/
-
-}
-
 int G_thresholdValue = 54;
 int G_thresholdType = 0;
 
