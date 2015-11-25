@@ -43,6 +43,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "lab_02_03_04_pixelOperation
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "lab_01_dataTypes", "lab_01_dataTypes\lab_01_dataTypes.vcxproj", "{6BBAB4C0-40B8-4AD9-8B04-AFF0E9C4F93B}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "lab_06_cameraCalibration", "lab_06_cameraCalibration\lab_06_cameraCalibration.vcxproj", "{7F87987A-1643-4A5E-9777-0A761BDBA4AE}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Mixed Platforms = Debug|Mixed Platforms
@@ -243,6 +245,16 @@ Global
 		{6BBAB4C0-40B8-4AD9-8B04-AFF0E9C4F93B}.Release|Win32.ActiveCfg = Release|x64
 		{6BBAB4C0-40B8-4AD9-8B04-AFF0E9C4F93B}.Release|x64.ActiveCfg = Release|x64
 		{6BBAB4C0-40B8-4AD9-8B04-AFF0E9C4F93B}.Release|x64.Build.0 = Release|x64
+		{7F87987A-1643-4A5E-9777-0A761BDBA4AE}.Debug|Mixed Platforms.ActiveCfg = Debug|x64
+		{7F87987A-1643-4A5E-9777-0A761BDBA4AE}.Debug|Mixed Platforms.Build.0 = Debug|x64
+		{7F87987A-1643-4A5E-9777-0A761BDBA4AE}.Debug|Win32.ActiveCfg = Debug|x64
+		{7F87987A-1643-4A5E-9777-0A761BDBA4AE}.Debug|x64.ActiveCfg = Debug|x64
+		{7F87987A-1643-4A5E-9777-0A761BDBA4AE}.Debug|x64.Build.0 = Debug|x64
+		{7F87987A-1643-4A5E-9777-0A761BDBA4AE}.Release|Mixed Platforms.ActiveCfg = Release|x64
+		{7F87987A-1643-4A5E-9777-0A761BDBA4AE}.Release|Mixed Platforms.Build.0 = Release|x64
+		{7F87987A-1643-4A5E-9777-0A761BDBA4AE}.Release|Win32.ActiveCfg = Release|x64
+		{7F87987A-1643-4A5E-9777-0A761BDBA4AE}.Release|x64.ActiveCfg = Release|x64
+		{7F87987A-1643-4A5E-9777-0A761BDBA4AE}.Release|x64.Build.0 = Release|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

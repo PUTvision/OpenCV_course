@@ -1,6 +1,6 @@
 #include "opencv2/opencv.hpp"
 
-// Using CeempleCVand OpenCV 3.X
+// Using CeempleCV and OpenCV 3.X
 
 using namespace cv;
 
