@@ -1,18 +1,32 @@
-#include <opencv2/opencv.hpp>
-
-#include <vector>
+#include "opencv2/opencv.hpp"
 
 using namespace cv;
-
-// TODO - clean up and decide what to do with FindMarkersAndTransform function from scratchpad
 
 static void TrackbarFunction(int, void*)
 {
 }
 
-static inline void ExerciseFindMarkersAndDoThePerspectiveTransform(int& thresholdValue, int& thresholdType, char* windowName)
+int main(int, char)
 {
-	Mat imgFromFile = imread("testImage.jpg", IMREAD_GRAYSCALE);
+	/// Create a window to display results
+	char* windowName = "Main window";
+	namedWindow(windowName, WINDOW_AUTOSIZE);
+
+	// trackbar parameters
+	const int maxValue = 255;
+	const int  maxType = 4;
+
+	int thresholdValue = 44;
+	int thresholdType = 0;
+
+	char* trackbarType = "Type: \n 0: Binary \n 1: Binary Inverted \n 2: Truncate \n 3: To Zero \n 4: To Zero Inverted";
+	char* trackbarValue = "Value";
+
+	/// Create Trackbar to choose type and value
+	createTrackbar(trackbarType, windowName, &thresholdType, maxType, TrackbarFunction);
+	createTrackbar(trackbarValue, windowName, &thresholdValue, maxValue, TrackbarFunction);
+
+	Mat imgFromFile = imread("..\\data\\structural_analysisis_and_contour_detection\\not_bad.jpg", IMREAD_GRAYSCALE);
 
 	Mat imgSrc;
 	resize(imgFromFile, imgSrc, Size(), 0.25, 0.25, INTER_NEAREST);
@@ -103,29 +117,6 @@ static inline void ExerciseFindMarkersAndDoThePerspectiveTransform(int& threshol
 		key = 'z';
 		key = waitKey(0);
 	}
-}
 
-int main(void)
-{
-	/// Create a window to display results
-	char* windowName = "Main window";
-	namedWindow(windowName, WINDOW_AUTOSIZE);
-
-	// trackbar parameters
-	const int maxValue = 255;
-	const int  maxType = 4;
-
-	int thresholdValue = 44;
-	int thresholdType = 0;
-
-	char* trackbarType = "Type: \n 0: Binary \n 1: Binary Inverted \n 2: Truncate \n 3: To Zero \n 4: To Zero Inverted";
-	char* trackbarValue = "Value";
-
-	/// Create Trackbar to choose type and value
-	createTrackbar(trackbarType, windowName, &thresholdType, maxType, TrackbarFunction);
-	createTrackbar(trackbarValue, windowName, &thresholdValue, maxValue, TrackbarFunction);
-
-	ExerciseFindMarkersAndDoThePerspectiveTransform(thresholdValue, thresholdType, windowName);
-
-	return 1;
+	return 0;
 }

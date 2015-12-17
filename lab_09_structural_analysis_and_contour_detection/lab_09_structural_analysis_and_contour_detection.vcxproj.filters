@@ -15,7 +15,7 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="StructuralAnalysisContourDetection.cpp">
+    <ClCompile Include="lab_09_structural_analysis_and_contour_detection.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
