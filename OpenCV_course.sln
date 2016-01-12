@@ -47,6 +47,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "lab_09_structural_analysis_
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "lab_08_movement_detection", "lab_08_movement_detection\lab_08_movement_detection.vcxproj", "{4DB756EA-1CC2-481B-B183-88B078420D33}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "lab_11_object_detection", "lab_11_object_detection\lab_11_object_detection.vcxproj", "{126C2E6E-9ECE-4E40-9966-C12352F41941}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Mixed Platforms = Debug|Mixed Platforms
@@ -267,6 +269,16 @@ Global
 		{4DB756EA-1CC2-481B-B183-88B078420D33}.Release|Win32.ActiveCfg = Release|x64
 		{4DB756EA-1CC2-481B-B183-88B078420D33}.Release|x64.ActiveCfg = Release|x64
 		{4DB756EA-1CC2-481B-B183-88B078420D33}.Release|x64.Build.0 = Release|x64
+		{126C2E6E-9ECE-4E40-9966-C12352F41941}.Debug|Mixed Platforms.ActiveCfg = Debug|x64
+		{126C2E6E-9ECE-4E40-9966-C12352F41941}.Debug|Mixed Platforms.Build.0 = Debug|x64
+		{126C2E6E-9ECE-4E40-9966-C12352F41941}.Debug|Win32.ActiveCfg = Debug|x64
+		{126C2E6E-9ECE-4E40-9966-C12352F41941}.Debug|x64.ActiveCfg = Debug|x64
+		{126C2E6E-9ECE-4E40-9966-C12352F41941}.Debug|x64.Build.0 = Debug|x64
+		{126C2E6E-9ECE-4E40-9966-C12352F41941}.Release|Mixed Platforms.ActiveCfg = Release|x64
+		{126C2E6E-9ECE-4E40-9966-C12352F41941}.Release|Mixed Platforms.Build.0 = Release|x64
+		{126C2E6E-9ECE-4E40-9966-C12352F41941}.Release|Win32.ActiveCfg = Release|x64
+		{126C2E6E-9ECE-4E40-9966-C12352F41941}.Release|x64.ActiveCfg = Release|x64
+		{126C2E6E-9ECE-4E40-9966-C12352F41941}.Release|x64.Build.0 = Release|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
