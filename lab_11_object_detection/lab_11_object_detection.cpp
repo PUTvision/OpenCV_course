@@ -29,6 +29,22 @@ void ObjectRecognition(void)
 		//Ptr<AKAZE> detector_and_descriptor = AKAZE::create();
 		Ptr<ORB> detector_and_descriptor = ORB::create();
 
+		////detector_and_descriptor->
+		//detector_and_descriptor->set("patchSize", 100);
+		////int threshold = detector_and_descriptor->get<int>("threshold");
+		//std::cout << detector_and_descriptor->paramHelp("patchSize") << std::endl;
+		//int threshold = detector_and_descriptor->getInt("patchSize");
+		//std::cout << threshold << std::endl;
+
+		Ptr<Feature2D> det = FastFeatureDetector::create();
+		std::vector<cv::String> listOfParameters;
+		det->getParams(listOfParameters);
+		std::cout << "Detector available params: " << std::endl;
+		for (auto param : listOfParameters)
+		{
+			std::cout << param << std::endl;
+		}
+
 		std::vector<KeyPoint> keypointsObject, keypointsScene;
 
 		//detector.detect(imgObject, keypointsObject);
