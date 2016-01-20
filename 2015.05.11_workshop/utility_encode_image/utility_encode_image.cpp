@@ -1,5 +1,7 @@
 #include "opencv2/opencv.hpp"
 
+// Ceemple OpenCV 3.0
+
 using namespace cv;
 
 static void encodePatternInLastBitOfImage(Mat& imageToEnocdeIn, const Mat& pattern)
@@ -29,6 +31,5 @@ int main(int, char)
 
 	imwrite("..\\data\\dog_wizard.png", imageToEnocdeIn);
 
-	// the camera will be deinitialized automatically in VideoCapture destructor
 	return 0;
 }

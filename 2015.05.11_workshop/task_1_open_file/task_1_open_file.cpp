@@ -1,5 +1,7 @@
 #include "opencv2/opencv.hpp"
 
+// Ceemple OpenCV 3.0
+
 using namespace cv;
 
 #include <iostream>
