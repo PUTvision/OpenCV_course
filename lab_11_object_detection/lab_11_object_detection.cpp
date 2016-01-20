@@ -1,5 +1,8 @@
 #include "opencv2/opencv.hpp"
 
+// Ceemple OpenCV 3.0
+// based on OpenCV example: http://docs.opencv.org/3.0-beta/doc/tutorials/features2d/feature_homography/feature_homography.html#feature-homography
+
 using namespace cv;
 
 #include <vector>
@@ -11,64 +14,53 @@ void ObjectRecognition(void)
 	const char windowName[] = "Good Matches & Object detection";
 	namedWindow(windowName, WINDOW_AUTOSIZE | WINDOW_KEEPRATIO);
 
-	int surfThreshold = 400;
 	double minimumDistanceMultiplayer = 2.5;
 
 	char filename[50];
 	for (int j = 0; j<4; ++j)
 	{
-		//sprintf(filename, "rozpoznawanie//obiekt%d.png", j + 1);
 		sprintf(filename, "..\\data\\object_recognition\\obiekt%d.png", j + 1);
 
 		Mat imgObject = imread(filename, IMREAD_GRAYSCALE);
 
-		//-- Step 1: Detect the keypoints using SURF Detector
-		//SurfFeatureDetector detector(surfThreshold);
-		//Ptr<FeatureDetector> detector_and_descriptor = FeatureDetector::create("ORB");
+		//-- Step 1: Detect the keypoints using detector
 
-		//Ptr<AKAZE> detector_and_descriptor = AKAZE::create();
+		// SURF - not available in Ceemple
+		//int surf_threshold = 400;
+		//SurfFeatureDetector detector(surf_threshold);
+		// SurfDescriptorExtractor extractor;
+		
+		// ORB - binary detector and descriptor
 		Ptr<ORB> detector_and_descriptor = ORB::create();
-
-		////detector_and_descriptor->
-		//detector_and_descriptor->set("patchSize", 100);
-		////int threshold = detector_and_descriptor->get<int>("threshold");
-		//std::cout << detector_and_descriptor->paramHelp("patchSize") << std::endl;
-		//int threshold = detector_and_descriptor->getInt("patchSize");
-		//std::cout << threshold << std::endl;
-
-		Ptr<Feature2D> det = FastFeatureDetector::create();
-		std::vector<cv::String> listOfParameters;
-		det->getParams(listOfParameters);
-		std::cout << "Detector available params: " << std::endl;
-		for (auto param : listOfParameters)
-		{
-			std::cout << param << std::endl;
-		}
 
 		std::vector<KeyPoint> keypointsObject, keypointsScene;
 
-		//detector.detect(imgObject, keypointsObject);
-		//detector.detect(imgScene, keypointsScene);
 		detector_and_descriptor->detect(imgObject, keypointsObject);
 		detector_and_descriptor->detect(imgScene, keypointsScene);
 
 		//-- Step 2: Calculate descriptors (feature vectors)
-		//SurfDescriptorExtractor extractor;
-
 		Mat descriptorsObject, descriptorsScene;
 
+		// SURF version
 		//extractor.compute(imgObject, keypointsObject, descriptorsObject);
 		//extractor.compute(imgScene, keypointsScene, descriptorsScene);
+
+		// ORB version
 		detector_and_descriptor->compute(imgObject, keypointsObject, descriptorsObject);
 		detector_and_descriptor->compute(imgScene, keypointsScene, descriptorsScene);
 
-		//-- Step 3: Matching descriptor vectors using FLANN matcher
-		//FlannBasedMatcher matcher;
-		//BFMatcher matcher(NORM_L2, false);
-		BFMatcher matcher(NORM_HAMMING, false);
+		//-- Step 3: Matching descriptor vectors using matcher
 		std::vector< DMatch > matches;
+
+		// SURF version
+		//BFMatcher matcher(NORM_L2);
+
+		// ORB version
+		BFMatcher matcher(NORM_HAMMING);
+
 		matcher.match(descriptorsObject, descriptorsScene, matches);
 
+		//-- Step 4: Parse points based on distance
 		double maxDistance = 0; double minDistance = 100;
 
 		//-- Quick calculation of max and min distances between keypoints
@@ -80,11 +72,10 @@ void ObjectRecognition(void)
 			if (distance > maxDistance)
 				maxDistance = distance;
 		}
-
 		printf("-- Max dist : %f \n", maxDistance);
 		printf("-- Min dist : %f \n", minDistance);
 
-		//-- Draw only "good" matches (i.e. whose distance is less than 3*min_dist )
+		//-- Draw only "good" matches
 		std::vector< DMatch > goodMatches;
 
 		for (int i = 0; i < descriptorsObject.rows; ++i)
@@ -109,6 +100,7 @@ void ObjectRecognition(void)
 			scene.push_back(keypointsScene[goodMatches[i].trainIdx].pt);
 		}
 
+		//-- Find the transofrmation between object and secene
 		Mat H = findHomography(obj, scene, RANSAC);
 
 		//-- Get the corners from the image_1 ( the object to be "detected" )
