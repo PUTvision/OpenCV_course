@@ -727,43 +727,8 @@ static void loadPGMfile(void)
 	waitKey(0);
 }
 
-void loadMovie()
-{
-	//VideoCapture inputVideo("F:\\Amin\\Desktop\\00007.MTS");
-	VideoCapture inputVideo("F:\\Amin\\Desktop\\dla_studentow_nowa.wmv");
-	//VideoCapture inputVideo("F:\\Amin\\Desktop\\00008.mp4");
-	//VideoCapture inputVideo("F:\\Amin\\Desktop\\dt_passat.mpg");
-
-	Mat currentFrame;
-	inputVideo >> currentFrame;
-
-	const char windowName[] = "Main";
-	namedWindow(windowName, WINDOW_AUTOSIZE | WINDOW_KEEPRATIO);
-
-	cout << "Start reading input video file\r\n";
-
-	for (;;)
-	{
-		cout << inputVideo.grab() << ", ";
-		inputVideo.retrieve(currentFrame);
-
-		//capture>>frame;
-
-		imshow(windowName, currentFrame);
-
-		waitKey(20);
-	}
-
-
-}
-
 int main(int, char**)
 {
-
-	loadMovie();
-
-	myObjectDetect();
-
 	PSEyeTest();
 
 	//loadPGMfile();
@@ -861,8 +826,7 @@ int main(int, char**)
 
 	//zmienna przechowujaca klatke
 	Mat frame;
-	//zatrza´sni²ecie klatki wewn ² atrz kamery bez jej odzyskania
-	//szybkie, pozwala na synchronizacj²e kamer:
+
 	capture.grab();
 	//odzyskanie zatrzasnietej klatki:
 	capture.retrieve(frame);
