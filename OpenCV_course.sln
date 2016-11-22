@@ -49,6 +49,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "lab_08_movement_detection",
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "lab_11_object_detection", "lab_11_object_detection\lab_11_object_detection.vcxproj", "{126C2E6E-9ECE-4E40-9966-C12352F41941}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "OpenCVProject1", "OpenCVProject1\OpenCVProject1.vcxproj", "{6AE998DE-4BD8-4B32-AA78-F175F1B492DD}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Mixed Platforms = Debug|Mixed Platforms
@@ -279,6 +281,16 @@ Global
 		{126C2E6E-9ECE-4E40-9966-C12352F41941}.Release|Win32.ActiveCfg = Release|x64
 		{126C2E6E-9ECE-4E40-9966-C12352F41941}.Release|x64.ActiveCfg = Release|x64
 		{126C2E6E-9ECE-4E40-9966-C12352F41941}.Release|x64.Build.0 = Release|x64
+		{6AE998DE-4BD8-4B32-AA78-F175F1B492DD}.Debug|Mixed Platforms.ActiveCfg = Debug|x64
+		{6AE998DE-4BD8-4B32-AA78-F175F1B492DD}.Debug|Mixed Platforms.Build.0 = Debug|x64
+		{6AE998DE-4BD8-4B32-AA78-F175F1B492DD}.Debug|Win32.ActiveCfg = Debug|x64
+		{6AE998DE-4BD8-4B32-AA78-F175F1B492DD}.Debug|x64.ActiveCfg = Debug|x64
+		{6AE998DE-4BD8-4B32-AA78-F175F1B492DD}.Debug|x64.Build.0 = Debug|x64
+		{6AE998DE-4BD8-4B32-AA78-F175F1B492DD}.Release|Mixed Platforms.ActiveCfg = Release|x64
+		{6AE998DE-4BD8-4B32-AA78-F175F1B492DD}.Release|Mixed Platforms.Build.0 = Release|x64
+		{6AE998DE-4BD8-4B32-AA78-F175F1B492DD}.Release|Win32.ActiveCfg = Release|x64
+		{6AE998DE-4BD8-4B32-AA78-F175F1B492DD}.Release|x64.ActiveCfg = Release|x64
+		{6AE998DE-4BD8-4B32-AA78-F175F1B492DD}.Release|x64.Build.0 = Release|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
