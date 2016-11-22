@@ -2,9 +2,9 @@
 
 using namespace cv;
 
-void interpolationTest(void)
+void interpolationTest()
 {
-	Mat imgSrc = imread("..\\data\\programmers_tan.jpg", IMREAD_COLOR);
+	Mat imgSrc = imread("..\\data\\transformations\\qr.jpg", IMREAD_COLOR);
 	Mat imgDst;
 
 	/*
@@ -19,33 +19,88 @@ void interpolationTest(void)
 	To shrink an image, it will generally look best with CV_INTER_AREA interpolation, whereas to enlarge an image, it will generally look best with CV_INTER_CUBIC (slow) or CV_INTER_LINEAR (faster but still looks OK).
 	*/
 
-	resize(imgSrc, imgDst, Size(), 0.5, 0.5, INTER_NEAREST);
-	//resize(imgSrc, imgDst, Size(2000, 2000), 0.0, 0.0, INTER_CUBIC);
+	namedWindow("Image source", WINDOW_NORMAL | WINDOW_KEEPRATIO);
+	namedWindow("Image destination", WINDOW_NORMAL | WINDOW_KEEPRATIO);
 
-	Point2f srcPoints[] = { Point2f(0, 0), Point2f(imgDst.cols, 0), Point2f(imgDst.cols, imgDst.rows) };
-	Point2f dstPoints[] = { Point2f(10, 10), Point2f(40, 10), Point2f(40, 40) };
+	int choosenMethod = 0;
+	createTrackbar("Interpolation method", "Image source", &choosenMethod, 3);
+	int methods[] = { INTER_NEAREST, INTER_LINEAR, INTER_AREA, INTER_CUBIC };
+	int choosenScale = 0;
+	createTrackbar("Interpolation scale", "Image source", &choosenScale, 6);
+	float scales[] = { 0.25, 0.33, 0.5, 0.66, 1.5, 2.0, 2.15 };
 
+	while (waitKey(50) < 0)
+	{
+		resize(imgSrc, imgDst, Size(), scales[choosenScale], scales[choosenScale], methods[choosenMethod]);
 
-	Point2f srcPointsPerspective[] = { Point2f(10, 60), Point2f(120, 10), Point2f(120, 120), Point2f(10, 170) };
-	Point2f dstPointsPerspective[] = { Point2f(0, 0), Point2f(imgDst.cols, 0), Point2f(imgDst.cols, imgDst.rows), Point2f(0, imgDst.rows) };
+		imshow("Image source", imgSrc);
+		imshow("Image destination", imgDst);
+	}
 
-	Mat affineTransform = getAffineTransform(srcPoints, dstPoints);
-	Mat perspectiveTransform = getPerspectiveTransform(srcPointsPerspective, dstPointsPerspective);
-	//warpAffine(imgSrc, imgDst, affineTransform, Size(300, 300));
-	warpPerspective(imgSrc, imgDst, perspectiveTransform, Size(imgDst.cols, imgDst.rows));
+	destroyAllWindows();
+}
+
+Point2f srcPoints[4];
+bool flagFindTransformation = false;
+
+void transformationsMouseCallback(int e, int x, int y, int, void*)
+{
+	static int currentIndex = 0;
+
+	if (e == EVENT_LBUTTONDOWN)
+	{
+		srcPoints[currentIndex] = Point(x, y);
+
+		if (currentIndex < 3)
+		{
+			currentIndex++;
+		}
+		else
+		{
+			flagFindTransformation = true;
+			currentIndex = 0;
+		}
+	}
+}
+
+void transformationsTest()
+{
+	Mat imgSrc = imread("..\\data\\transformations\\droga.jpg", IMREAD_COLOR);
+	resize(imgSrc, imgSrc, Size(), 0.25, 0.25, INTER_NEAREST);
+	Mat imgDst;
+	imgSrc.copyTo(imgDst);
+
+	//Point2f srcPoints[] = { Point2f(0, 0), Point2f(imgDst.cols, 0), Point2f(imgDst.cols, imgDst.rows) };
+	//Point2f dstPoints[] = { Point2f(10, 10), Point2f(40, 10), Point2f(40, 40) };
+
+	Point2f dstPoints[] = { Point2f(0, 0), Point2f(500, 0), Point2f(500, 500), Point2f(0, 500) };
 
 	namedWindow("Image source");
+	setMouseCallback("Image source", transformationsMouseCallback);
 	namedWindow("Image destination");
-	imshow("Image source", imgSrc);
-	imshow("Image destination", imgDst);
 
-	waitKey(0);
+	while (waitKey(50) < 0)
+	{
+		if (flagFindTransformation)
+		{
+			//Mat affineTransform = getAffineTransform(srcPoints, dstPoints);
+			Mat perspectiveTransform = getPerspectiveTransform(srcPoints, dstPoints);
+			//warpAffine(imgSrc, imgDst, affineTransform, imgDst.size());
+			warpPerspective(imgSrc, imgDst, perspectiveTransform, Size(500, 500));
+
+			flagFindTransformation = false;
+		}
+
+		imshow("Image source", imgSrc);
+		imshow("Image destination", imgDst);
+	}
 
 }
 
 int main(int, char)
 {
 	interpolationTest();
+	transformationsTest();
 
 	return 0;
 }
