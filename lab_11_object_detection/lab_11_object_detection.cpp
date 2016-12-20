@@ -19,7 +19,7 @@ void ObjectRecognition(void)
 	char filename[50];
 	for (int j = 0; j<4; ++j)
 	{
-		sprintf(filename, "..\\data\\object_recognition\\obiekt%d.png", j + 1);
+		sprintf(filename, "..\\data\\object_recognition\\obiekt%d_s.png", j + 1);
 
 		Mat imgObject = imread(filename, IMREAD_GRAYSCALE);
 
@@ -31,7 +31,10 @@ void ObjectRecognition(void)
 		// SurfDescriptorExtractor extractor;
 		
 		// ORB - binary detector and descriptor
-		Ptr<ORB> detector_and_descriptor = ORB::create();
+		//Ptr<ORB> detector_and_descriptor = ORB::create();
+		//Ptr<AKAZE> detector_and_descriptor = AKAZE::create();
+		Ptr<KAZE> detector_and_descriptor = KAZE::create(true, false);
+		//Ptr<BRISK> detector_and_descriptor = BRISK::create();
 
 		std::vector<KeyPoint> keypointsObject, keypointsScene;
 
@@ -52,16 +55,16 @@ void ObjectRecognition(void)
 		//-- Step 3: Matching descriptor vectors using matcher
 		std::vector< DMatch > matches;
 
-		// SURF version
-		//BFMatcher matcher(NORM_L2);
+		// SURF, KAZE version
+		BFMatcher matcher(NORM_L2);
 
-		// ORB version
-		BFMatcher matcher(NORM_HAMMING);
+		// ORB, AKAZE, BRISK version
+		//BFMatcher matcher(NORM_HAMMING);
 
 		matcher.match(descriptorsObject, descriptorsScene, matches);
 
 		//-- Step 4: Parse points based on distance
-		double maxDistance = 0; double minDistance = 100;
+		double maxDistance = 0; double minDistance = 9999;
 
 		//-- Quick calculation of max and min distances between keypoints
 		for (int i = 0; i < descriptorsObject.rows; ++i)
@@ -112,17 +115,21 @@ void ObjectRecognition(void)
 
 		std::vector<Point2f> sceneCorners(4);
 
-		perspectiveTransform(objCorners, sceneCorners, H);
+		if (!H.empty())
+		{
+			// Use it
+			perspectiveTransform(objCorners, sceneCorners, H);
 
-		//-- Draw lines between the corners (the mapped object in the scene - image_2 )
-		circle(imgMatches, sceneCorners[0] + Point2f(imgObject.cols, 0), 5, Scalar(0, 255, 0), 4);
-		circle(imgMatches, sceneCorners[1] + Point2f(imgObject.cols, 0), 5, Scalar(255, 0, 0), 4);
-		circle(imgMatches, sceneCorners[2] + Point2f(imgObject.cols, 0), 5, Scalar(0, 0, 255), 4);
-		circle(imgMatches, sceneCorners[3] + Point2f(imgObject.cols, 0), 5, Scalar(0, 255, 255), 4);
-		line(imgMatches, sceneCorners[0] + Point2f(imgObject.cols, 0), sceneCorners[1] + Point2f(imgObject.cols, 0), Scalar(0, 255, 0), 4);
-		line(imgMatches, sceneCorners[1] + Point2f(imgObject.cols, 0), sceneCorners[2] + Point2f(imgObject.cols, 0), Scalar(0, 255, 0), 4);
-		line(imgMatches, sceneCorners[2] + Point2f(imgObject.cols, 0), sceneCorners[3] + Point2f(imgObject.cols, 0), Scalar(0, 255, 0), 4);
-		line(imgMatches, sceneCorners[3] + Point2f(imgObject.cols, 0), sceneCorners[0] + Point2f(imgObject.cols, 0), Scalar(0, 255, 0), 4);
+			//-- Draw lines between the corners (the mapped object in the scene - image_2 )
+			circle(imgMatches, sceneCorners[0] + Point2f(imgObject.cols, 0), 5, Scalar(0, 255, 0), 4);
+			circle(imgMatches, sceneCorners[1] + Point2f(imgObject.cols, 0), 5, Scalar(255, 0, 0), 4);
+			circle(imgMatches, sceneCorners[2] + Point2f(imgObject.cols, 0), 5, Scalar(0, 0, 255), 4);
+			circle(imgMatches, sceneCorners[3] + Point2f(imgObject.cols, 0), 5, Scalar(0, 255, 255), 4);
+			line(imgMatches, sceneCorners[0] + Point2f(imgObject.cols, 0), sceneCorners[1] + Point2f(imgObject.cols, 0), Scalar(0, 255, 0), 4);
+			line(imgMatches, sceneCorners[1] + Point2f(imgObject.cols, 0), sceneCorners[2] + Point2f(imgObject.cols, 0), Scalar(0, 255, 0), 4);
+			line(imgMatches, sceneCorners[2] + Point2f(imgObject.cols, 0), sceneCorners[3] + Point2f(imgObject.cols, 0), Scalar(0, 255, 0), 4);
+			line(imgMatches, sceneCorners[3] + Point2f(imgObject.cols, 0), sceneCorners[0] + Point2f(imgObject.cols, 0), Scalar(0, 255, 0), 4);
+		}	
 
 		//-- Show detected matches
 		imshow(windowName, imgMatches);
