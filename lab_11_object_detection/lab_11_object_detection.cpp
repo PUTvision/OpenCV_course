@@ -1,4 +1,5 @@
 #include "opencv2/opencv.hpp"
+#include "opencv2/xfeatures2d.hpp"
 
 // Ceemple OpenCV 3.0
 // based on OpenCV example: http://docs.opencv.org/3.0-beta/doc/tutorials/features2d/feature_homography/feature_homography.html#feature-homography
@@ -19,21 +20,23 @@ void ObjectRecognition(void)
 	char filename[50];
 	for (int j = 0; j<4; ++j)
 	{
-		sprintf(filename, "..\\data\\object_recognition\\obiekt%d_s.png", j + 1);
+		sprintf_s(filename, 50, "..\\data\\object_recognition\\obiekt%d_s.png", j + 1);
 
 		Mat imgObject = imread(filename, IMREAD_GRAYSCALE);
 
 		//-- Step 1: Detect the keypoints using detector
 
 		// SURF - not available in Ceemple
-		//int surf_threshold = 400;
-		//SurfFeatureDetector detector(surf_threshold);
-		// SurfDescriptorExtractor extractor;
+		int surf_threshold = 400;
+
+		//Ptr<xfeatures2d::SurfFeatureDetector> detector = xfeatures2d::SurfFeatureDetector::create(surf_threshold);
+		Ptr<xfeatures2d::SURF> detector_and_descriptor = xfeatures2d::SURF::create(surf_threshold);
+		//xfeatures2d::SurfDescriptorExtractor extractor;
 		
 		// ORB - binary detector and descriptor
 		//Ptr<ORB> detector_and_descriptor = ORB::create();
 		//Ptr<AKAZE> detector_and_descriptor = AKAZE::create();
-		Ptr<KAZE> detector_and_descriptor = KAZE::create(true, false);
+		//Ptr<KAZE> detector_and_descriptor = KAZE::create(true, false);
 		//Ptr<BRISK> detector_and_descriptor = BRISK::create();
 
 		std::vector<KeyPoint> keypointsObject, keypointsScene;

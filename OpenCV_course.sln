@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2013
-VisualStudioVersion = 12.0.40629.0
+# Visual Studio 15
+VisualStudioVersion = 15.0.26730.15
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "OpenVideo", "OpenVideo\OpenVideo.vcxproj", "{08B18DB5-1002-43D8-83B8-DB876FCC4931}"
 EndProject
@@ -49,7 +49,7 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "lab_08_movement_detection",
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "lab_11_object_detection", "lab_11_object_detection\lab_11_object_detection.vcxproj", "{126C2E6E-9ECE-4E40-9966-C12352F41941}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "OpenCVProject1", "OpenCVProject1\OpenCVProject1.vcxproj", "{6AE998DE-4BD8-4B32-AA78-F175F1B492DD}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "vcpkg", "vcpkg\vcpkg.vcxproj", "{33122918-B78B-4841-8598-FD8B4CA79BB4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -271,8 +271,8 @@ Global
 		{4DB756EA-1CC2-481B-B183-88B078420D33}.Release|Win32.ActiveCfg = Release|x64
 		{4DB756EA-1CC2-481B-B183-88B078420D33}.Release|x64.ActiveCfg = Release|x64
 		{4DB756EA-1CC2-481B-B183-88B078420D33}.Release|x64.Build.0 = Release|x64
-		{126C2E6E-9ECE-4E40-9966-C12352F41941}.Debug|Mixed Platforms.ActiveCfg = Debug|x64
-		{126C2E6E-9ECE-4E40-9966-C12352F41941}.Debug|Mixed Platforms.Build.0 = Debug|x64
+		{126C2E6E-9ECE-4E40-9966-C12352F41941}.Debug|Mixed Platforms.ActiveCfg = Debug|Win32
+		{126C2E6E-9ECE-4E40-9966-C12352F41941}.Debug|Mixed Platforms.Build.0 = Debug|Win32
 		{126C2E6E-9ECE-4E40-9966-C12352F41941}.Debug|Win32.ActiveCfg = Debug|x64
 		{126C2E6E-9ECE-4E40-9966-C12352F41941}.Debug|x64.ActiveCfg = Debug|x64
 		{126C2E6E-9ECE-4E40-9966-C12352F41941}.Debug|x64.Build.0 = Debug|x64
@@ -281,16 +281,18 @@ Global
 		{126C2E6E-9ECE-4E40-9966-C12352F41941}.Release|Win32.ActiveCfg = Release|x64
 		{126C2E6E-9ECE-4E40-9966-C12352F41941}.Release|x64.ActiveCfg = Release|x64
 		{126C2E6E-9ECE-4E40-9966-C12352F41941}.Release|x64.Build.0 = Release|x64
-		{6AE998DE-4BD8-4B32-AA78-F175F1B492DD}.Debug|Mixed Platforms.ActiveCfg = Debug|x64
-		{6AE998DE-4BD8-4B32-AA78-F175F1B492DD}.Debug|Mixed Platforms.Build.0 = Debug|x64
-		{6AE998DE-4BD8-4B32-AA78-F175F1B492DD}.Debug|Win32.ActiveCfg = Debug|x64
-		{6AE998DE-4BD8-4B32-AA78-F175F1B492DD}.Debug|x64.ActiveCfg = Debug|x64
-		{6AE998DE-4BD8-4B32-AA78-F175F1B492DD}.Debug|x64.Build.0 = Debug|x64
-		{6AE998DE-4BD8-4B32-AA78-F175F1B492DD}.Release|Mixed Platforms.ActiveCfg = Release|x64
-		{6AE998DE-4BD8-4B32-AA78-F175F1B492DD}.Release|Mixed Platforms.Build.0 = Release|x64
-		{6AE998DE-4BD8-4B32-AA78-F175F1B492DD}.Release|Win32.ActiveCfg = Release|x64
-		{6AE998DE-4BD8-4B32-AA78-F175F1B492DD}.Release|x64.ActiveCfg = Release|x64
-		{6AE998DE-4BD8-4B32-AA78-F175F1B492DD}.Release|x64.Build.0 = Release|x64
+		{33122918-B78B-4841-8598-FD8B4CA79BB4}.Debug|Mixed Platforms.ActiveCfg = Debug|Win32
+		{33122918-B78B-4841-8598-FD8B4CA79BB4}.Debug|Mixed Platforms.Build.0 = Debug|Win32
+		{33122918-B78B-4841-8598-FD8B4CA79BB4}.Debug|Win32.ActiveCfg = Debug|Win32
+		{33122918-B78B-4841-8598-FD8B4CA79BB4}.Debug|Win32.Build.0 = Debug|Win32
+		{33122918-B78B-4841-8598-FD8B4CA79BB4}.Debug|x64.ActiveCfg = Debug|x64
+		{33122918-B78B-4841-8598-FD8B4CA79BB4}.Debug|x64.Build.0 = Debug|x64
+		{33122918-B78B-4841-8598-FD8B4CA79BB4}.Release|Mixed Platforms.ActiveCfg = Release|Win32
+		{33122918-B78B-4841-8598-FD8B4CA79BB4}.Release|Mixed Platforms.Build.0 = Release|Win32
+		{33122918-B78B-4841-8598-FD8B4CA79BB4}.Release|Win32.ActiveCfg = Release|Win32
+		{33122918-B78B-4841-8598-FD8B4CA79BB4}.Release|Win32.Build.0 = Release|Win32
+		{33122918-B78B-4841-8598-FD8B4CA79BB4}.Release|x64.ActiveCfg = Release|x64
+		{33122918-B78B-4841-8598-FD8B4CA79BB4}.Release|x64.Build.0 = Release|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -303,5 +305,8 @@ Global
 		{3B30E429-45AA-4590-A3C6-DF50D4B7C7F3} = {DB180190-F77F-42D3-B53D-A353674F6A93}
 		{745BBC3A-941C-48B4-B476-94B6C7E32B2E} = {DB180190-F77F-42D3-B53D-A353674F6A93}
 		{87901042-C740-4A98-9E96-BC5BA6A01845} = {DB180190-F77F-42D3-B53D-A353674F6A93}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {0DDD49F1-9189-439B-BD5E-D8BAE8D7A8CC}
 	EndGlobalSection
 EndGlobal
