@@ -39,6 +39,24 @@ static void detectMovement(const cv::Mat &newFrame, const cv::Mat &background, c
 
 enum class Method { SIMPLE, AVG_MEDIAN, ACCUMULATE_WEIGHTED };
 
+void alternativeAvgMedianImplementation(cv::Mat &currentFrame, cv::Mat &background, int updateValue)
+{
+	uchar* backgroundCurrentRow = background.ptr<uchar>(j);
+	const uchar* currentFrameCurrentRow = currentFrame.ptr<uchar>(j);
+
+	for (int k = 0; k<currentFrame.cols; ++k)
+	{
+		if (backgroundCurrentRow[k] > currentFrameCurrentRow[k])
+		{
+			backgroundCurrentRow[k] -= updateValue;
+		}
+		else if (backgroundCurrentRow[k] < currentFrameCurrentRow[k])
+		{
+			backgroundCurrentRow[k] += updateValue;
+		}
+	}
+}
+
 static void updateBackground(const cv::Mat &frame, cv::Mat &background, const cv::Mat &isForeground, Method method, double alpha)
 {
 	cv::Mat isBackground = cv::Mat::ones(isForeground.size(), CV_8UC1) * 255 - isForeground;
@@ -55,6 +73,10 @@ static void updateBackground(const cv::Mat &frame, cv::Mat &background, const cv
 			cv::Mat maskSubtract = (frame<background) / 255;
 			add(background, maskAdd, background, isBackground, CV_32FC1);
 			subtract(background, maskSubtract, background, isBackground, CV_32FC1);
+			
+			// this is another way to update background
+			//alternativeAvgMedianImplementation(frame, background, 1);
+
 			break;
 	}
 }

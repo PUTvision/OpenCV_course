@@ -1,8 +1,8 @@
 #include "opencv2/opencv.hpp"
 #include "opencv2/xfeatures2d.hpp"
 
-// vcpkg OpenCV 3.3.1
-// based on OpenCV example: http://docs.opencv.org/3.0-beta/doc/tutorials/features2d/feature_homography/feature_homography.html#feature-homography
+// vcpkg OpenCV 3.3.X
+// based on OpenCV example: https://docs.opencv.org/3.3.1/d7/dff/tutorial_feature_homography.html
 
 using namespace cv;
 
@@ -15,7 +15,7 @@ void ObjectRecognition(void)
 	const char windowName[] = "Good Matches & Object detection";
 	namedWindow(windowName, WINDOW_AUTOSIZE | WINDOW_KEEPRATIO);
 
-	double minimumDistanceMultiplayer = 2.5;
+	double minimumDistanceMultiplayer = 5;
 
 	for (int j = 0; j<4; ++j)
 	{
