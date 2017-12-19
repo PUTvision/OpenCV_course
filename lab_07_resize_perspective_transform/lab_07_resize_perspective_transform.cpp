@@ -1,5 +1,7 @@
 #include "opencv2/opencv.hpp"
 
+// vcpkg OpenCV 3.3.X
+
 using namespace cv;
 
 void interpolationTest()
@@ -43,7 +45,27 @@ void interpolationTest()
 Point2f srcPoints[4];
 bool flagFindTransformation = false;
 
-void transformationsMouseCallback(int e, int x, int y, int, void*)
+void affineTransformMouseCallback(int e, int x, int y, int, void*)
+{
+	static int currentIndex = 0;
+
+	if (e == EVENT_LBUTTONDOWN)
+	{
+		srcPoints[currentIndex] = Point(x, y);
+
+		if (currentIndex < 2)
+		{
+			currentIndex++;
+		}
+		else
+		{
+			flagFindTransformation = true;
+			currentIndex = 0;
+		}
+	}
+}
+
+void perpectiveTransformMouseCallback(int e, int x, int y, int, void*)
 {
 	static int currentIndex = 0;
 
@@ -63,29 +85,52 @@ void transformationsMouseCallback(int e, int x, int y, int, void*)
 	}
 }
 
-void transformationsTest()
+void affineTransformTest()
 {
 	Mat imgSrc = imread("..\\data\\transformations\\droga.jpg", IMREAD_COLOR);
 	resize(imgSrc, imgSrc, Size(), 0.25, 0.25, INTER_NEAREST);
 	Mat imgDst;
 	imgSrc.copyTo(imgDst);
 
-	//Point2f srcPoints[] = { Point2f(0, 0), Point2f(imgDst.cols, 0), Point2f(imgDst.cols, imgDst.rows) };
-	//Point2f dstPoints[] = { Point2f(10, 10), Point2f(40, 10), Point2f(40, 40) };
-
-	Point2f dstPoints[] = { Point2f(0, 0), Point2f(500, 0), Point2f(500, 500), Point2f(0, 500) };
+	Point2f dstPoints[] = { Point2f(0, 0), Point2f(500, 0), Point2f(500, 500) };
 
 	namedWindow("Image source");
-	setMouseCallback("Image source", transformationsMouseCallback);
+	setMouseCallback("Image source", affineTransformMouseCallback);
 	namedWindow("Image destination");
 
 	while (waitKey(50) < 0)
 	{
 		if (flagFindTransformation)
 		{
-			//Mat affineTransform = getAffineTransform(srcPoints, dstPoints);
+			Mat affineTransform = getAffineTransform(srcPoints, dstPoints);
+			warpAffine(imgSrc, imgDst, affineTransform, imgDst.size());
+
+			flagFindTransformation = false;
+		}
+
+		imshow("Image source", imgSrc);
+		imshow("Image destination", imgDst);
+	}
+}
+
+void perspectiveTransformTest()
+{
+	Mat imgSrc = imread("..\\data\\transformations\\droga.jpg", IMREAD_COLOR);
+	resize(imgSrc, imgSrc, Size(), 0.25, 0.25, INTER_NEAREST);
+	Mat imgDst;
+	imgSrc.copyTo(imgDst);
+
+	Point2f dstPoints[] = { Point2f(0, 0), Point2f(500, 0), Point2f(500, 500), Point2f(0, 500) };
+
+	namedWindow("Image source");
+	setMouseCallback("Image source", perpectiveTransformMouseCallback);
+	namedWindow("Image destination");
+
+	while (waitKey(50) < 0)
+	{
+		if (flagFindTransformation)
+		{
 			Mat perspectiveTransform = getPerspectiveTransform(srcPoints, dstPoints);
-			//warpAffine(imgSrc, imgDst, affineTransform, imgDst.size());
 			warpPerspective(imgSrc, imgDst, perspectiveTransform, Size(500, 500));
 
 			flagFindTransformation = false;
@@ -94,13 +139,13 @@ void transformationsTest()
 		imshow("Image source", imgSrc);
 		imshow("Image destination", imgDst);
 	}
-
 }
 
 int main(int, char)
 {
 	interpolationTest();
-	transformationsTest();
+	affineTransformTest();
+	perspectiveTransformTest();
 
 	return 0;
 }

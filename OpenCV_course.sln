@@ -39,8 +39,6 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "lab_01_dataTypes", "lab_01_
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "lab_06_cameraCalibration", "lab_06_cameraCalibration\lab_06_cameraCalibration.vcxproj", "{7F87987A-1643-4A5E-9777-0A761BDBA4AE}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "lab_07_resize_perspective_transform", "lab_07_resize_perspective_transform\lab_07_resize_perspective_transform.vcxproj", "{90C15394-3D32-4788-B58E-63A49A215705}"
-EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "lab_09_structural_analysis_and_contour_detection", "lab_09_structural_analysis_and_contour_detection\lab_09_structural_analysis_and_contour_detection.vcxproj", "{C99541B1-EEA1-468F-ACB0-22875FE2F4BB}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "lab_11_object_detection", "lab_11_object_detection\lab_11_object_detection.vcxproj", "{126C2E6E-9ECE-4E40-9966-C12352F41941}"
@@ -50,6 +48,8 @@ EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "lab_08_movement_detection", "lab_08_movement_detection\lab_08_movement_detection.vcxproj", "{B6AC0A8A-35A5-4A9C-9547-A1A7786B115A}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "lab_05_edgeDetection", "lab_05_edgeDetection\lab_05_edgeDetection.vcxproj", "{63273706-703B-4F6D-A4CA-9BF7226A14B6}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "lab_07_resize_perspective_transform", "lab_07_resize_perspective_transform\lab_07_resize_perspective_transform.vcxproj", "{4A203C40-4C67-42E3-9023-2229D626305D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
