@@ -1,5 +1,6 @@
 #include "opencv2/opencv.hpp"
 
+// vcpkg OpenCV 3.3.X
 using namespace cv;
 
 static void TrackbarFunction(int, void*)
@@ -8,7 +9,6 @@ static void TrackbarFunction(int, void*)
 
 int main(int, char)
 {
-	/// Create a window to display results
 	char* windowName = "Main window";
 	namedWindow(windowName, WINDOW_AUTOSIZE);
 
