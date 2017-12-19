@@ -1,7 +1,7 @@
 #include "opencv2/opencv.hpp"
 #include "opencv2/xfeatures2d.hpp"
 
-// Ceemple OpenCV 3.0
+// vcpkg OpenCV 3.3.1
 // based on OpenCV example: http://docs.opencv.org/3.0-beta/doc/tutorials/features2d/feature_homography/feature_homography.html#feature-homography
 
 using namespace cv;
@@ -17,22 +17,21 @@ void ObjectRecognition(void)
 
 	double minimumDistanceMultiplayer = 2.5;
 
-	char filename[50];
 	for (int j = 0; j<4; ++j)
 	{
+		char filename[50];
 		sprintf_s(filename, 50, "..\\data\\object_recognition\\obiekt%d_s.png", j + 1);
 
 		Mat imgObject = imread(filename, IMREAD_GRAYSCALE);
 
 		//-- Step 1: Detect the keypoints using detector
 
-		// SURF - not available in Ceemple
 		int surf_threshold = 400;
 
 		//Ptr<xfeatures2d::SurfFeatureDetector> detector = xfeatures2d::SurfFeatureDetector::create(surf_threshold);
 		Ptr<xfeatures2d::SURF> detector_and_descriptor = xfeatures2d::SURF::create(surf_threshold);
 		//xfeatures2d::SurfDescriptorExtractor extractor;
-		
+
 		// ORB - binary detector and descriptor
 		//Ptr<ORB> detector_and_descriptor = ORB::create();
 		//Ptr<AKAZE> detector_and_descriptor = AKAZE::create();
@@ -47,11 +46,10 @@ void ObjectRecognition(void)
 		//-- Step 2: Calculate descriptors (feature vectors)
 		Mat descriptorsObject, descriptorsScene;
 
-		// SURF version
+		// if independant detector is used extractor should be invoked in following fashion:
 		//extractor.compute(imgObject, keypointsObject, descriptorsObject);
 		//extractor.compute(imgScene, keypointsScene, descriptorsScene);
 
-		// ORB version
 		detector_and_descriptor->compute(imgObject, keypointsObject, descriptorsObject);
 		detector_and_descriptor->compute(imgScene, keypointsScene, descriptorsScene);
 
@@ -132,12 +130,10 @@ void ObjectRecognition(void)
 			line(imgMatches, sceneCorners[1] + Point2f(imgObject.cols, 0), sceneCorners[2] + Point2f(imgObject.cols, 0), Scalar(0, 255, 0), 4);
 			line(imgMatches, sceneCorners[2] + Point2f(imgObject.cols, 0), sceneCorners[3] + Point2f(imgObject.cols, 0), Scalar(0, 255, 0), 4);
 			line(imgMatches, sceneCorners[3] + Point2f(imgObject.cols, 0), sceneCorners[0] + Point2f(imgObject.cols, 0), Scalar(0, 255, 0), 4);
-		}	
+		}
 
 		//-- Show detected matches
 		imshow(windowName, imgMatches);
-
-		//imwrite("DDD_do_prezentacji.png", imgMatches);
 
 		waitKey(0);
 	}
